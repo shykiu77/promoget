@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+  ViewChild,
+} from '@angular/core';
 import { HomeService } from '@services/home.service';
 import { CommonModule } from '@angular/common';
 import { ScrollerModule } from 'primeng/scroller';
@@ -36,6 +42,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class HomeComponent implements OnInit, OnDestroy {
   products: any[] = [];
   lastProduct: any = null;
+  loading: boolean = false;
   display: boolean = false;
   isLastPage: boolean = false;
   searchQuery: string = '';
@@ -45,6 +52,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   totalRecords: number = 0;
   priceMin: number | null = null;
   priceMax: number | null = null;
+
+  @ViewChild('scroller') scroller!: any;
 
   private searchSubscription: Subscription = new Subscription();
 
@@ -75,6 +84,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     if (this.lastProduct) this.lastProduct.loading = true;
 
+    this.loading = true;
+
     this.homeService
       .getProducts(
         Math.ceil(event.last / 30 + 1),
@@ -88,6 +99,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         take(1),
         catchError((e: HttpErrorResponse) => {
           if (this.lastProduct) this.lastProduct.loading = false;
+          this.loading = false;
           this.lastProduct = null;
           if (e.error?.detail === 'No products found') this.showToastDone();
           else this.showToastError();
@@ -97,6 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
         this.products = [...this.products, ...response];
         if (this.lastProduct) this.lastProduct.loading = false;
+        this.loading = false;
         this.lastProduct = this.products.at(-1);
         this.cdr.detectChanges();
       });
