@@ -1,0 +1,109 @@
+<p-toast></p-toast>
+
+<main>
+  <div class="row" style="max-width: 100%">
+    <div class="col-3">
+      <div class="d-flex flex-column m-1 p-3 filtros">
+        <h3>Filtros</h3>
+
+        <label for="sortBy" class="mt-3">Ordenar por:</label>
+        <p-dropdown
+          [options]="[
+            { label: 'Criação', value: 'created_at' },
+            { label: 'Preço', value: 'true_price' },
+            { label: 'Alfabética', value: 'label' }
+          ]"
+          [(ngModel)]="sortBy"
+          [style]="{ minWidth: '50px', width: '100%' }"
+          id="sortBy"
+        />
+
+        <label for="sortOrder" class="mt-3">Em ordem:</label>
+        <p-dropdown
+          [options]="[
+            { label: 'Crescente', value: 'asc' },
+            { label: 'Decrescente', value: 'desc' }
+          ]"
+          [(ngModel)]="sortOrder"
+          [style]="{ minWidth: '50px', width: '100%' }"
+          id="sortOrder"
+        />
+
+        <label for="priceRangeMin" class="mt-4">Entre:</label>
+        <div class="d-flex flex-column" style="gap: 16px">
+          <p-inputNumber
+            id="priceRangeMin"
+            [(ngModel)]="priceMin"
+            placeholder="Min"
+            [style]="{ minWidth: '50px', width: '100%' }"
+          />
+          <p-inputNumber
+            id="priceRangeMax"
+            [(ngModel)]="priceMax"
+            placeholder="Max"
+            [style]="{ minWidth: '50px', width: '100%' }"
+          />
+        </div>
+
+        <p-button
+          label="Pesquisar"
+          class="mt-3"
+          severity="info"
+          [style]="{ width: '100%' }"
+          (click)="loadData({ first: 0, last: 0 }, true)"
+        />
+        <p-button
+          label="Limpar filtros"
+          class="mt-3"
+          severity="warning"
+          [style]="{ width: '100%' }"
+          (click)="clearFilters()"
+        />
+      </div>
+    </div>
+
+    <div class="col-6">
+      <p-scroller
+        class="custom-scroller"
+        *ngIf="products.length > 0"
+        [items]="products"
+        scrollHeight="calc(100vh - 76px)"
+        [itemSize]="240"
+        [lazy]="true"
+        [step]="10"
+        (onLazyLoad)="loadData($event)"
+      >
+        <ng-template let-product pTemplate="item">
+          <app-product
+            [product]="product"
+            [loading]="product.loading ?? false"
+            (showDialog)="handleShowDialog($event)"
+          ></app-product>
+        </ng-template>
+      </p-scroller>
+
+      <div
+        *ngIf="products.length === 0"
+        class="alert alert-danger mt-4 d-flex flex-row align-items-center gap-2"
+      >
+        <i class="pi pi-info-circle"></i><span>Nenhum produto encontrado</span>
+      </div>
+    </div>
+
+    <div class="col-3"></div>
+  </div>
+</main>
+
+<p-dialog
+  [(visible)]="display"
+  [modal]="true"
+  [closable]="true"
+  [dismissableMask]="true"
+>
+  <img
+    *ngIf="selectedImage"
+    [src]="'data:image/jpg;base64,' + selectedImage"
+    alt="Selected Image"
+    style="width: 100%; max-height: 480px"
+  />
+</p-dialog>

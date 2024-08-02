@@ -1,0 +1,30 @@
+.clear-btn {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  outline: none;
+}
+
+.clear-btn i {
+  font-size: 1.2rem;
+}
+
+::ng-deep .p-toolbar {
+  border-radius: 0;
+}
+
+.clear-btn {
+  display: flex;
+}
+
+.clear-btn i {
+  color: #b8e4fc;
+}
+
+.title {
+  color: #fff;
+}

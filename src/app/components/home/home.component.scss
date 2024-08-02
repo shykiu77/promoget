@@ -1,0 +1,28 @@
+::ng-deep .p-scroller::-webkit-scrollbar {
+  display: none !important;
+}
+
+::ng-deep .p-scroller {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::ng-deep .p-dialog-header {
+  display: none;
+}
+
+::ng-deep .p-inputtext {
+  width: 100%;
+}
+
+label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.filtros {
+  background: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #000;
+  margin-top: 15px !important;
+}

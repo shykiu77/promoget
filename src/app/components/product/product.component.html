@@ -1,0 +1,73 @@
+<div class="product-item card p-3">
+  <div class="product-info" *ngIf="!loading; else skeletonTemplate">
+    <div class="d-flex flex-row">
+      <h5 class="product-name ms-auto">
+        {{ product.label }}
+      </h5>
+      <i
+        class="pi pi-eye view-icon ms-auto"
+        (click)="onShowDialog(product.base64_image)"
+        style="cursor: pointer; margin-left: 10px"
+      ></i>
+    </div>
+
+    <div
+      class="prices d-flex justify-content-center flex-column align-items-center mt-auto"
+    >
+      <span
+        *ngIf="
+          product.normal_price !== null && product.discounted_price !== null
+        "
+        class="normal-price text-muted text-decoration-line-through"
+      >
+        Preço normal: {{ product.normal_price | currency : "BRL" }}
+      </span>
+      <span
+        *ngIf="
+          product.discounted_price !== null && product.normal_price !== null
+        "
+        class="discounted-price text-success"
+      >
+        Preço com desconto: {{ product.discounted_price | currency : "BRL" }}
+      </span>
+      <span
+        *ngIf="
+          product.normal_price === null || product.discounted_price === null
+        "
+        class="text-success"
+      >
+        Preço:
+        {{
+          (product.normal_price !== null
+            ? product.normal_price
+            : product.discounted_price
+          ) | currency : "BRL"
+        }}
+      </span>
+    </div>
+    <div class="d-flex flex-row justify-content-between mt-2">
+      <div class="store-info mt-auto text-secondary">
+        <i class="pi pi-map-marker mr-2"></i
+        ><a [href]="generateGoogleMapsLink(product.location)" target="_blank">{{
+          product.location || "LOJA PLACEHOLDER"
+        }}</a>
+      </div>
+      <div>{{ product.created_at | date : "dd/MM/yyyy HH:mm" }}</div>
+    </div>
+  </div>
+  <ng-template #skeletonTemplate>
+    <div class="product-info">
+      <div class="d-flex flex-row">
+        <p-skeleton width="30vw" height="1.5rem" class="ms-auto" />
+        <p-skeleton width="24px" height="24px" shape="circle" class="ms-auto" />
+      </div>
+      <div
+        class="prices d-flex justify-content-center flex-column align-items-center mt-4"
+      >
+        <p-skeleton width="15vw" height="1.5rem" class="mb-4" />
+        <p-skeleton width="20vw" height="1.5rem" class="mb-3" />
+      </div>
+      <p-skeleton width="15vw" height="1.5rem" />
+    </div>
+  </ng-template>
+</div>

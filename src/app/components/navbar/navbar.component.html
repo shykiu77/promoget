@@ -1,0 +1,20 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <img src="/assets/promoget.svg" />
+  </div>
+  <div class="p-toolbar-group-center">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input
+        pInputText
+        placeholder="Buscar produto..."
+        [(ngModel)]="searchQuery"
+        (input)="onSearch($event)"
+      />
+      <button *ngIf="searchQuery" class="clear-btn" (click)="clearSearch()">
+        <i class="pi pi-times"></i>
+      </button>
+    </span>
+  </div>
+  <div class="p-toolbar-group-end"><div style="width: 128px"></div></div>
+</p-toolbar>
