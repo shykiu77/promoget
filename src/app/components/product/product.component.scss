@@ -15,14 +15,14 @@
 }
 
 .product-name {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: bold;
   color: #2a323d;
 }
 
 .prices {
   margin-top: 10px;
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   text-align: center;
 }
 
@@ -42,6 +42,7 @@
   align-items: center;
   color: #333333;
   margin-top: 10px;
+  font-size: clamp(0.75rem, 1.8vw, 1rem);
 }
 
 .store-info i {
@@ -58,4 +59,8 @@
 
 a {
   text-decoration: none;
+}
+
+.product-date {
+  font-size: clamp(0.75rem, 1.8vw, 1rem);
 }

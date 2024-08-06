@@ -20,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SidebarModule } from 'primeng/sidebar';
+import { MenuTogglerService } from '@services/menu-toggler.service';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +36,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     DropdownModule,
     InputNumberModule,
     ToastModule,
+    SidebarModule,
   ],
   providers: [MessageService],
   templateUrl: './home.component.html',
@@ -45,6 +48,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   display: boolean = false;
   isLastPage: boolean = false;
+  showMenu: boolean = false;
   searchQuery: string = '';
   selectedImage: string = '';
   sortOrder: string = 'desc';
@@ -56,12 +60,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   @ViewChild('scroller') scroller!: any;
 
   private searchSubscription: Subscription = new Subscription();
+  private togglerSubscription: Subscription = new Subscription();
 
   constructor(
     private homeService: HomeService,
     private searchService: SearchService,
     private cdr: ChangeDetectorRef,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private menuTogglerService: MenuTogglerService
   ) {}
 
   handleShowDialog(image: string) {
@@ -74,6 +80,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.searchService.searchQuery$.subscribe((query) => {
         this.searchQuery = query;
         this.loadData({ first: 0, last: 0 }, true);
+      })
+    );
+    this.togglerSubscription.add(
+      this.menuTogglerService.toggleState$.subscribe(() => {
+        this.showMenu = !this.showMenu;
+        this.cdr.detectChanges();
       })
     );
   }
@@ -141,5 +153,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.searchSubscription.unsubscribe();
+    this.togglerSubscription.unsubscribe();
   }
 }
