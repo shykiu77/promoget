@@ -21,7 +21,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
 import { SidebarModule } from 'primeng/sidebar';
-import { MenuTogglerService } from '@services/menu-toggler.service';
+import { FilterComponent } from '@components/filter/filter.component';
+import { NavbarService } from '@services/navbar.service';
 
 @Component({
   selector: 'app-home',
@@ -37,6 +38,7 @@ import { MenuTogglerService } from '@services/menu-toggler.service';
     InputNumberModule,
     ToastModule,
     SidebarModule,
+    FilterComponent,
   ],
   providers: [MessageService],
   templateUrl: './home.component.html',
@@ -61,13 +63,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private searchSubscription: Subscription = new Subscription();
   private togglerSubscription: Subscription = new Subscription();
+  private scrollerSubscription: Subscription = new Subscription();
 
   constructor(
     private homeService: HomeService,
     private searchService: SearchService,
     private cdr: ChangeDetectorRef,
     private messageService: MessageService,
-    private menuTogglerService: MenuTogglerService
+    private navbarService: NavbarService
   ) {}
 
   handleShowDialog(image: string) {
@@ -83,9 +86,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       })
     );
     this.togglerSubscription.add(
-      this.menuTogglerService.toggleState$.subscribe(() => {
+      this.navbarService.toggleMenu$.subscribe(() => {
         this.showMenu = !this.showMenu;
         this.cdr.detectChanges();
+      })
+    );
+    this.scrollerSubscription.add(
+      this.navbarService.scrollToTop$.subscribe(() => {
+        this.scroller.scrollToIndex(0, 'smooth');
       })
     );
   }
@@ -154,5 +162,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.searchSubscription.unsubscribe();
     this.togglerSubscription.unsubscribe();
+    this.scrollerSubscription.unsubscribe();
   }
 }

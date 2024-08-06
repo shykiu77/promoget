@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { SearchService } from '@services/search.service'; // Adjust the import path as needed
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { MenuTogglerService } from '@services/menu-toggler.service';
+import { NavbarService } from '@services/navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   constructor(
     private searchService: SearchService,
-    private menuToggleService: MenuTogglerService
+    private navbarService: NavbarService
   ) {}
 
   ngOnInit() {
@@ -48,6 +48,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   onToggle(): void {
-    this.menuToggleService.toggle();
+    this.navbarService.toggle();
+  }
+
+  onScrollToTop(): void {
+    this.navbarService.scrollTop();
   }
 }
