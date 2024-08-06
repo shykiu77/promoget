@@ -39,4 +39,11 @@ export class ProductComponent {
 
     return googleMapsLink;
   }
+
+  formatLabel(label: string): string {
+    if (label === '') return label;
+    const lowercaseLabel = label.toLowerCase();
+
+    return lowercaseLabel[0].toUpperCase() + lowercaseLabel.slice(1);
+  }
 }

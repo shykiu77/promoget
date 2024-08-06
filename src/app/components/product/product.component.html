@@ -2,7 +2,7 @@
   <div class="product-info" *ngIf="!loading; else skeletonTemplate">
     <div class="d-flex flex-row">
       <h5 class="product-name ms-auto">
-        {{ product.label }}
+        {{ formatLabel(product.label) }}
       </h5>
       <i
         class="pi pi-eye view-icon ms-auto"
