@@ -7,7 +7,7 @@ import { catchError, Observable, of, throwError } from 'rxjs';
 })
 export class HomeService {
   private baseUrl = 'https://promoget-backend.onrender.com/';
-
+  // private baseUrl = 'http://localhost:8000/';
   constructor(private http: HttpClient) {}
 
   getProducts(
@@ -17,6 +17,7 @@ export class HomeService {
     sortOrder: string = 'asc',
     priceMin: number | null = null,
     priceMax: number | null = null,
+    daysAgo: number | null = null,
     limit: number = 30
   ): Observable<any> {
     let url = `${this.baseUrl}products?page=${page}&limit=${limit}&sort_by=${sortBy}&order=${sortOrder}`;
@@ -28,6 +29,9 @@ export class HomeService {
     }
     if (priceMax !== null) {
       url += `&priceMax=${priceMax}`;
+    }
+    if (daysAgo !== null) {
+      url += `&daysAgo=${daysAgo}`;
     }
     return this.http.get(url);
   }

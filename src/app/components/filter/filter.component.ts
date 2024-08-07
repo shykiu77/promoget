@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { SliderModule } from 'primeng/slider';
 
 @Component({
   selector: 'app-filter',
@@ -14,6 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     ButtonModule,
     CommonModule,
     FormsModule,
+    SliderModule,
   ],
   styleUrls: ['./filter.component.scss'],
   standalone: true,
@@ -45,6 +47,9 @@ export class FilterComponent {
     { label: 'Decrescente', value: 'desc' },
   ];
 
+  @Input() daysAgo: number = 7;
+  @Output() daysAgoChange = new EventEmitter<number>();
+
   onSearch(): void {
     this.search.emit();
   }
@@ -71,5 +76,10 @@ export class FilterComponent {
   onPriceMaxChange(value: number | null): void {
     this.priceMax = value;
     this.priceMaxChange.emit(this.priceMax);
+  }
+
+  onDaysAgoChange(value: number): void {
+    this.daysAgo = value;
+    this.daysAgoChange.emit(value);
   }
 }

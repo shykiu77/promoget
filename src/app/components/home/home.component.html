@@ -5,6 +5,7 @@
     [(sortOrder)]="sortOrder"
     [(priceMin)]="priceMin"
     [(priceMax)]="priceMax"
+    [(daysAgo)]="daysAgo"
     (search)="loadData({ first: 0, last: 0 }, true)"
     (clearFilters)="clearFilters()"
   ></app-filter>
@@ -19,6 +20,7 @@
           [(sortOrder)]="sortOrder"
           [(priceMin)]="priceMin"
           [(priceMax)]="priceMax"
+          [(daysAgo)]="daysAgo"
           (search)="loadData({ first: 0, last: 0 }, true)"
           (clearFilters)="clearFilters()"
         ></app-filter>

@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   totalRecords: number = 0;
   priceMin: number | null = null;
   priceMax: number | null = null;
+  daysAgo: number = 7;
 
   @ViewChild('scroller') scroller!: any;
 
@@ -113,7 +114,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.sortBy,
         this.sortOrder,
         this.priceMin,
-        this.priceMax
+        this.priceMax,
+        this.daysAgo
       )
       .pipe(
         take(1),
@@ -140,6 +142,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sortOrder = 'desc';
     this.priceMin = null;
     this.priceMax = null;
+    this.daysAgo = 7;
     this.loadData({ first: 0, last: 0 }, true);
   }
 
