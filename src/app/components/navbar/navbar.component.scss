@@ -28,3 +28,9 @@
 .title {
   color: #fff;
 }
+
+@media (min-width: 990px) {
+  .p-toolbar-group-center {
+    margin-right: 128px;
+  }
+}
