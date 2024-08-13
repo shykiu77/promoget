@@ -23,7 +23,7 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/assets"],
+            "assets": ["src/assets", "src/robots.txt"],
             "styles": [
               "node_modules/primeng/resources/themes/bootstrap4-dark-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
