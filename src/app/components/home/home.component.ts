@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.homeService
       .getProducts(
-        Math.ceil(event.last / 30 + 1),
+        Math.ceil(event.last / 15 + 1),
         this.searchQuery,
         this.sortBy,
         this.sortOrder,

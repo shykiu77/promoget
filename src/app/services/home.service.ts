@@ -18,7 +18,7 @@ export class HomeService {
     priceMin: number | null = null,
     priceMax: number | null = null,
     daysAgo: number | null = null,
-    limit: number = 30
+    limit: number = 15
   ): Observable<any> {
     let url = `${this.baseUrl}products?page=${page}&limit=${limit}&sort_by=${sortBy}&order=${sortOrder}`;
     if (query) {
