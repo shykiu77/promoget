@@ -1,30 +1,45 @@
 <p-toolbar>
   <div class="p-toolbar-group-start">
-    <img src="/assets/promoget.svg" style="width: 120px; height: 40px" />
+    <img
+      src="/assets/promoget.svg"
+      style="width: 120px; height: 40px"
+      alt="Logo do PromoGet"
+    />
   </div>
   <div class="p-toolbar-group-center">
     <span class="p-input-icon-left">
-      <i class="pi pi-search"></i>
+      <i class="pi pi-search" aria-hidden="true"></i>
       <input
         pInputText
         placeholder="Buscar produto..."
         [(ngModel)]="searchQuery"
         (input)="onSearch($event)"
+        aria-label="Campo de busca"
       />
-      <button *ngIf="searchQuery" class="clear-btn" (click)="clearSearch()">
-        <i class="pi pi-times"></i>
+      <button
+        *ngIf="searchQuery"
+        class="clear-btn"
+        (click)="clearSearch()"
+        aria-label="Limpar busca"
+      >
+        <i class="pi pi-times" aria-hidden="true"></i>
       </button>
     </span>
   </div>
   <div class="p-toolbar-group-end">
-    <button class="btn d-lg-none mr-1" (click)="onScrollToTop()">
+    <button
+      class="btn d-lg-none mr-1"
+      (click)="onScrollToTop()"
+      aria-label="Voltar ao topo"
+    >
       <i
         class="pi pi-angle-up"
         style="font-size: 24px; cursor: pointer; color: #fff"
+        aria-hidden="true"
       ></i>
     </button>
-    <button class="btn d-lg-none" (click)="onToggle()">
-      <i class="pi pi-list" style="color: #fff"></i>
+    <button class="btn d-lg-none" (click)="onToggle()" aria-label="Abrir menu">
+      <i class="pi pi-list" style="color: #fff" aria-hidden="true"></i>
     </button>
   </div>
 </p-toolbar>

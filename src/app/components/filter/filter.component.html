@@ -1,6 +1,8 @@
 <h3>Filtros</h3>
 
-<label for="daysAgo" class="mt-3 mb-3">Dias atrás: {{ daysAgo }}</label>
+<label for="daysAgo" class="mt-3 mb-3" id="daysAgo"
+  >Dias atrás: {{ daysAgo }}</label
+>
 <p-slider
   [(ngModel)]="daysAgo"
   [min]="1"
@@ -9,25 +11,28 @@
   (ngModelChange)="onDaysAgoChange($event)"
   [style]="{ width: '100%' }"
   id="daysAgo"
+  aria-labelledby="daysAgo"
 >
 </p-slider>
 
-<label for="sortBy" class="mt-3">Ordenar por:</label>
+<label for="sortBy" class="mt-3" id="sortBy">Ordenar por:</label>
 <p-dropdown
   [options]="sortByOptions"
   [(ngModel)]="sortBy"
   (ngModelChange)="onSortByChange($event)"
   [style]="{ minWidth: '50px', width: '100%' }"
   id="sortBy"
+  aria-labelledby="sortBy"
 />
 
-<label for="sortOrder" class="mt-3">Em ordem:</label>
+<label for="sortOrder" class="mt-3" id="sortOrder">Em ordem:</label>
 <p-dropdown
   [options]="sortOrderOptions"
   [(ngModel)]="sortOrder"
   (ngModelChange)="onSortOrderChange($event)"
   [style]="{ minWidth: '50px', width: '100%' }"
   id="sortOrder"
+  aria-labelledby="sortOrder"
 />
 
 <label for="priceRangeMin" class="mt-4">Entre:</label>
@@ -38,6 +43,7 @@
     (ngModelChange)="onPriceMinChange($event)"
     placeholder="Min"
     [style]="{ minWidth: '50px', width: '100%' }"
+    aria-label="Preço mínimo"
   />
   <p-inputNumber
     id="priceRangeMax"
@@ -45,6 +51,7 @@
     (ngModelChange)="onPriceMaxChange($event)"
     placeholder="Max"
     [style]="{ minWidth: '50px', width: '100%' }"
+    aria-label="Preço máximo"
   />
 </div>
 
@@ -54,10 +61,12 @@
   severity="info"
   [style]="{ width: '100%' }"
   (click)="onSearch()"
+  aria-label="Pesquisar"
 />
 <p-button
   label="Limpar"
   severity="warning"
   [style]="{ width: '100%' }"
   (click)="onClear()"
+  aria-label="Limpar"
 />

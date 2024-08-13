@@ -1,5 +1,6 @@
-<p-toast></p-toast>
-<p-sidebar [(visible)]="showMenu" position="right">
+<p-toast aria-live="polite"></p-toast>
+
+<p-sidebar [(visible)]="showMenu" position="right" aria-label="Menu de Filtros">
   <app-filter
     [(sortBy)]="sortBy"
     [(sortOrder)]="sortOrder"
@@ -8,6 +9,7 @@
     [(daysAgo)]="daysAgo"
     (search)="loadData({ first: 0, last: 0 }, true)"
     (clearFilters)="clearFilters()"
+    aria-label="Filtro de Produtos"
   ></app-filter>
 </p-sidebar>
 
@@ -23,6 +25,7 @@
           [(daysAgo)]="daysAgo"
           (search)="loadData({ first: 0, last: 0 }, true)"
           (clearFilters)="clearFilters()"
+          aria-label="Filtro de Produtos"
         ></app-filter>
       </div>
     </div>
@@ -38,12 +41,14 @@
         [step]="10"
         (onLazyLoad)="loadData($event)"
         #scroller
+        aria-label="Lista de Produtos"
       >
         <ng-template let-product pTemplate="item">
           <app-product
             [product]="product"
             [loading]="product.loading ?? false"
             (showDialog)="handleShowDialog($event)"
+            aria-label="Produto"
           ></app-product>
         </ng-template>
       </p-scroller>
@@ -51,13 +56,25 @@
       <div
         *ngIf="products.length === 0 && !loading"
         class="alert alert-danger mt-4 d-flex flex-row align-items-center gap-2"
+        role="alert"
+        aria-live="assertive"
       >
-        <i class="pi pi-info-circle"></i><span>Nenhum produto encontrado</span>
+        <i class="pi pi-info-circle" aria-hidden="true"></i
+        ><span>Nenhum produto encontrado</span>
       </div>
       <div *ngIf="products.length === 0 && loading" class="col">
-        <app-product [loading]="true"></app-product>
-        <app-product [loading]="true"></app-product>
-        <app-product [loading]="true"></app-product>
+        <app-product
+          [loading]="true"
+          aria-label="Produto carregando"
+        ></app-product>
+        <app-product
+          [loading]="true"
+          aria-label="Produto carregando"
+        ></app-product>
+        <app-product
+          [loading]="true"
+          aria-label="Produto carregando"
+        ></app-product>
       </div>
     </div>
 
@@ -66,6 +83,7 @@
         class="pi pi-angle-up"
         style="font-size: 24px; cursor: pointer"
         (click)="scroller.scrollToIndex(0, 'smooth')"
+        aria-label="Voltar ao topo"
       ></i>
     </div>
   </div>
@@ -76,11 +94,12 @@
   [modal]="true"
   [closable]="true"
   [dismissableMask]="true"
+  aria-label="Dialog de Imagem"
 >
   <img
     *ngIf="selectedImage"
     [src]="'data:image/jpg;base64,' + selectedImage"
-    alt="Selected Image"
+    alt="Imagem Selecionada"
     style="width: 100%; max-height: 480px"
   />
 </p-dialog>
