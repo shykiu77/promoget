@@ -16,18 +16,16 @@
 <main class="container-fluid">
   <div class="row">
     <div class="col-lg-3 d-none d-lg-block">
-      <div class="d-flex flex-column m-1 p-3 filtros">
-        <app-filter
-          [(sortBy)]="sortBy"
-          [(sortOrder)]="sortOrder"
-          [(priceMin)]="priceMin"
-          [(priceMax)]="priceMax"
-          [(daysAgo)]="daysAgo"
-          (search)="loadData({ first: 0, last: 0 }, true)"
-          (clearFilters)="clearFilters()"
-          aria-label="Filtro de Produtos"
-        ></app-filter>
-      </div>
+      <app-filter
+        [(sortBy)]="sortBy"
+        [(sortOrder)]="sortOrder"
+        [(priceMin)]="priceMin"
+        [(priceMax)]="priceMax"
+        [(daysAgo)]="daysAgo"
+        (search)="loadData({ first: 0, last: 0 }, true)"
+        (clearFilters)="clearFilters()"
+        aria-label="Filtro de Produtos"
+      ></app-filter>
     </div>
 
     <div class="col-12 col-lg-6">

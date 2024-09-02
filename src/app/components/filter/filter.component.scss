@@ -2,6 +2,54 @@
   cursor: default !important;
 }
 
-label {
+.filter-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-title {
+  font-size: 1.25rem;
   font-weight: 600;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
+
+.filter-item {
+  margin-bottom: 1.5rem;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.price-range {
+  display: flex;
+  gap: 16px;
+}
+
+.filter-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.filter-button {
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
