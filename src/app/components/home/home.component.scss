@@ -15,6 +15,10 @@
   width: 100%;
 }
 
+::ng-deep .p-dialog .p-dialog-content {
+  padding: 0;
+}
+
 label {
   font-size: 18px;
   font-weight: 600;
