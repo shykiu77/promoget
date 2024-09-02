@@ -1,52 +1,44 @@
-<div
-  class="product-item card p-3"
-  role="region"
-  aria-labelledby="product-title"
->
+<div class="product-item card" role="region" aria-labelledby="product-title">
   <div class="product-info" *ngIf="!loading; else skeletonTemplate">
-    <div class="d-flex flex-row">
-      <div class="product-name ms-auto" id="product-title">
+    <div class="product-header">
+      <h3 class="product-name" id="product-title">
         {{ formatLabel(product.label) }}
-      </div>
-      <i
-        class="pi pi-eye view-icon ms-auto"
+      </h3>
+      <img
+        class="product-thumbnail"
         (click)="onShowDialog(product.base64_image)"
-        style="cursor: pointer; margin-left: 10px"
-        aria-label="Ver imagem do produto"
-      >
-      </i>
+        [src]="'data:image/jpg;base64,' + product.base64_image"
+        role="button"
+        aria-label="Ver imagem completa do produto"
+      />
     </div>
 
-    <div
-      class="prices d-flex justify-content-center flex-column align-items-center mt-auto"
-      aria-live="polite"
-    >
+    <div class="prices" aria-live="polite">
       <span
         *ngIf="
           product.normal_price !== null && product.discounted_price !== null
         "
-        class="normal-price text-muted text-decoration-line-through"
+        class="normal-price"
         aria-label="Preço normal"
       >
-        Preço normal: {{ product.normal_price | currency : "BRL" }}
+        {{ product.normal_price | currency : "BRL" }}
       </span>
       <span
         *ngIf="
           product.discounted_price !== null && product.normal_price !== null
         "
-        class="discounted-price text-success"
+        class="discounted-price"
         aria-label="Preço com desconto"
       >
-        Preço com desconto: {{ product.discounted_price | currency : "BRL" }}
+        {{ product.discounted_price | currency : "BRL" }}
       </span>
       <span
         *ngIf="
           product.normal_price === null || product.discounted_price === null
         "
-        class="text-success"
+        class="current-price"
         aria-label="Preço do produto"
       >
-        Preço:
         {{
           (product.normal_price !== null
             ? product.normal_price
@@ -55,12 +47,9 @@
         }}
       </span>
     </div>
-    <div class="d-flex flex-row justify-content-between mt-2">
-      <div
-        class="store-info mt-auto text-secondary"
-        aria-label="Informações da loja"
-      >
-        <i class="pi pi-map-marker mr-2" aria-hidden="true"></i>
+    <div class="product-footer">
+      <div class="store-info" aria-label="Informações da loja">
+        <i class="pi pi-map-marker" aria-hidden="true"></i>
         <a
           [href]="generateGoogleMapsLink(product.location)"
           target="_blank"
@@ -77,16 +66,11 @@
   <ng-template #skeletonTemplate>
     <div class="product-info">
       <div class="d-flex flex-row">
-        <p-skeleton
-          width="30vw"
-          height="1.5rem"
-          class="ms-auto"
-          aria-hidden="true"
-        />
+        <p-skeleton width="30vw" height="1.5rem" aria-hidden="true" />
         <p-skeleton
           width="24px"
           height="24px"
-          shape="circle"
+          shape="square"
           class="ms-auto"
           aria-hidden="true"
         />
