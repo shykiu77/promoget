@@ -5,7 +5,7 @@
   padding: 1.5rem;
   margin: 1rem 0;
   transition: all 0.3s ease;
-  height: 300px; /* Increased height */
+  height: 300px;
   display: flex;
   flex-direction: column;
 }
@@ -24,7 +24,7 @@
 .product-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Changed from center to flex-start */
+  align-items: flex-start;
   margin-bottom: 1rem;
 }
 
@@ -35,20 +35,20 @@
   margin: 0;
   flex-grow: 1;
   margin-right: 1rem;
-  max-width: 60%; /* Limit width to allow space for image */
+  max-width: 60%;
 }
 
 .product-thumbnail {
-  width: 100px; /* Increased width */
-  height: 100px; /* Increased height */
-  border-radius: 8px; /* Slightly increased border radius */
-  object-fit: cover; /* Ensure the image covers the area without distortion */
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-thumbnail:hover {
-  transform: scale(1.05); /* Reduced scale effect */
+  transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -57,7 +57,7 @@
   flex-direction: column;
   align-items: center;
   margin: 1rem 0;
-  flex-grow: 1; /* Allow prices to take up available space */
+  flex-grow: 1;
 }
 
 .normal-price {
@@ -77,7 +77,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: auto; /* Push footer to bottom */
+  margin-top: auto;
 }
 
 .store-info {
@@ -106,7 +106,6 @@
   color: #999;
 }
 
-/* Skeleton styles */
 .skeleton .product-header,
 .skeleton .prices,
 .skeleton .product-footer {

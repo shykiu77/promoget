@@ -47,7 +47,8 @@ export class FilterComponent {
     { label: 'Decrescente', value: 'desc' },
   ];
 
-  @Input() daysAgo: number = 7;
+  // @Input() daysAgo: number = 7;
+  @Input() daysAgo: number = 999;
   @Output() daysAgoChange = new EventEmitter<number>();
 
   onSearch(): void {
